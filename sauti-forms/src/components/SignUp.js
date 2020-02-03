@@ -5,13 +5,16 @@ import styled from 'styled-components';
 const StyledForm = styled.form`
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: start;
     text-align: center;
     width: 30%;
-    height: 45vh;
+    height: 50vh;
     min-width: 450px;
     border: 1px solid black;
+    padding: 10px;
 `
+ //end of StyledForm component
 
 const StyledDiv = styled.div`
     display: flex;
@@ -21,15 +24,27 @@ const StyledDiv = styled.div`
     width: 100%;
     height: 65vh;
 
+` 
+//end of StyledDiv component
+
+const StyledInput = styled.input`
+    width: 100%;
+    height: 30px;
+    border: 1px solid red;
+    border-radius: 10px;
 `
 
 const SignUp = () => {
 
+    const handleSubmit = e => {
+        e.preventDefault(); 
+      }
+
     return (
         <StyledDiv>
-            <StyledForm>
+            <StyledForm onSubmit={ handleSubmit }>
                 <label htmlFor="first-name">First Name:</label>
-                <input
+                <StyledInput
                     type="text"
                     placeholder="Enter First Name" 
                     name="first-name" 
@@ -37,7 +52,7 @@ const SignUp = () => {
                     />
 
                 <label htmlFor="last-name">Last Name:</label>
-                <input
+                <StyledInput
                     type="text"
                     placeholder="Enter Last Name" 
                     name="last-name" 
@@ -45,7 +60,7 @@ const SignUp = () => {
                     />
 
                 <label htmlFor="email">Email:</label>
-                <input
+                <StyledInput
                     type="email"
                     placeholder="Enter Email" 
                     name="email" 
@@ -53,7 +68,7 @@ const SignUp = () => {
                     />
 
                 <label htmlFor="password">Password:</label>
-                <input
+                <StyledInput
                     type="password" 
                     placeholder="Enter Password" 
                     name="password" 
@@ -61,8 +76,8 @@ const SignUp = () => {
                     />
 
                 <button type="submit">Register</button>
-                <h4>Already have an account?</h4>
-                <Link to='/sign-in'>Sign In</Link>            
+                <p>Already have an account? <Link to='/sign-in'>Sign In</Link> </p>
+                            
             </StyledForm>
         </StyledDiv>
     )
