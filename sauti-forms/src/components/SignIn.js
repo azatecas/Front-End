@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
@@ -31,7 +31,7 @@ const StyledForm = styled.form`
 const StyledInput = styled.input`
     width: 100%;
     height: 30px;
-    border: 1px solid red;
+    border: 1px solid gray;
     border-radius: 10px;
 `
 
@@ -43,21 +43,27 @@ const SignIn = () => {
         e.preventDefault(); 
       }
 
+    const [email, setEmail] = useState("");
+    
+    const [password, setPassword] = useState("");
+
     return (
         <StyledDiv onSubmit={ handleSubmit } >
             <StyledForm>
-                <label htmlFor="username">Username:</label>
+                <label htmlFor="email">Email:</label>
                 <StyledInput
-                    type="text"
-                    placeholder="Enter Username" 
-                    name="username" 
+                    type="email"
+                    placeholder="Enter Email"
+                    value={ email } 
+                    name="email" 
                     required
                     />
 
                 <label htmlFor="password">Password:</label>
                 <StyledInput
                     type="password" 
-                    placeholder="Enter Password" 
+                    placeholder="Enter Password"
+                    value={ password } 
                     name="password" 
                     required
                     />

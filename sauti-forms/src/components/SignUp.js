@@ -2,20 +2,6 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
-const StyledForm = styled.form`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: start;
-    text-align: center;
-    width: 30%;
-    height: 50vh;
-    min-width: 450px;
-    border: 1px solid black;
-    padding: 10px;
-`
- //end of StyledForm component
-
 const StyledDiv = styled.div`
     display: flex;
     flex-direction: row;
@@ -27,11 +13,29 @@ const StyledDiv = styled.div`
 ` 
 //end of StyledDiv component
 
+const StyledForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    text-align: center;
+    width: 30%;
+    height: 50vh;
+    min-width: 450px;
+    border: 1px solid black;
+    padding: 5px;
+`
+ //end of StyledForm component
+
+
+
 const StyledInput = styled.input`
-    width: 100%;
+    width: 98%;
     height: 30px;
-    border: 1px solid red;
+    border: 1px solid gray;
     border-radius: 10px;
+    padding-left: 5px;
+    
 `
 
 const SignUp = () => {
@@ -39,6 +43,8 @@ const SignUp = () => {
     const handleSubmit = e => {
         e.preventDefault(); 
       }
+
+    
 
     return (
         <StyledDiv>
