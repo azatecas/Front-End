@@ -24,7 +24,6 @@ const StyledForm = styled.form`
     min-width: 450px;
     border: 1px solid black;
     padding: 10px;
-
 `
 //end of StyledForm
 
@@ -39,13 +38,25 @@ const StyledInput = styled.input`
 
 const SignIn = () => {
 
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
     const handleSubmit = e => {
         e.preventDefault(); 
+        console.log(email, password);
       }
 
-    const [email, setEmail] = useState("");
-    
-    const [password, setPassword] = useState("");
+    const handleEmailChange = e => {
+        setEmail({
+        [e.target.id] : e.target.value
+    })
+    }
+
+    const handlePwdChange = e => {
+        setPassword({
+        [e.target.id] : e.target.value
+    })
+    }
 
     return (
         <StyledDiv onSubmit={ handleSubmit } >
@@ -54,18 +65,18 @@ const SignIn = () => {
                 <StyledInput
                     type="email"
                     placeholder="Enter Email"
-                    value={ email } 
                     name="email" 
                     required
+                    onChange={ handleEmailChange }
                     />
 
                 <label htmlFor="password">Password:</label>
                 <StyledInput
                     type="password" 
                     placeholder="Enter Password"
-                    value={ password } 
                     name="password" 
                     required
+                    onChange={ handlePwdChange }
                     />
 
                 <button type="submit">Login</button>
