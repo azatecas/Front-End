@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 const SignIn = () => {
 
@@ -21,7 +22,9 @@ const SignIn = () => {
                     required
                     />
 
-                <button type="submit">Login</button>            
+                <button type="submit">Login</button>
+                
+                    <Link to='./sign-up'>Sign Up</Link>           
             </form>
         </div>
     )
