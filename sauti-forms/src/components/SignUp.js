@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
@@ -27,25 +27,49 @@ const StyledForm = styled.form`
 `
  //end of StyledForm component
 
-
-
 const StyledInput = styled.input`
     width: 98%;
     height: 30px;
     border: 1px solid gray;
     border-radius: 10px;
-    padding-left: 5px;
-    
+    padding-left: 5px;    
 `
 
 const SignUp = () => {
 
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
     const handleSubmit = e => {
         e.preventDefault(); 
-      }
+      } //end of handleSubmit function
 
+      const handleNameChange = e => {
+        setFirstName({
+        [e.target.id] : e.target.value
+    })
+    } //end of handlePwdChange function
+
+    const handleLastNameChange = e => {
+        setLastName({
+        [e.target.id] : e.target.value
+    })
+    } //end of handlePwdChange function
+
+    const handleEmailChange = e => {
+        setEmail({
+        [e.target.id] : e.target.value
+    })
+    } //end of HandleEmailChange function
+
+    const handlePwdChange = e => {
+        setPassword({
+        [e.target.id] : e.target.value
+    })
+    } //end of handlePwdChange function
     
-
     return (
         <StyledDiv>
             <StyledForm onSubmit={ handleSubmit }>
@@ -55,6 +79,7 @@ const SignUp = () => {
                     placeholder="Enter First Name" 
                     name="first-name" 
                     required
+                    onChange={ handleNameChange }
                     />
 
                 <label htmlFor="last-name">Last Name:</label>
@@ -63,6 +88,7 @@ const SignUp = () => {
                     placeholder="Enter Last Name" 
                     name="last-name" 
                     required
+                    onChange={ handleLastNameChange }
                     />
 
                 <label htmlFor="email">Email:</label>
@@ -71,6 +97,7 @@ const SignUp = () => {
                     placeholder="Enter Email" 
                     name="email" 
                     required
+                    onChange={ handleEmailChange }
                     />
 
                 <label htmlFor="password">Password:</label>
@@ -79,6 +106,7 @@ const SignUp = () => {
                     placeholder="Enter Password" 
                     name="password" 
                     required
+                    onChange={ handlePwdChange }
                     />
 
                 <button type="submit">Register</button>

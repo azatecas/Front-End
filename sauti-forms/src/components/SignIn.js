@@ -34,8 +34,6 @@ const StyledInput = styled.input`
     border-radius: 10px;
 `
 
-
-
 const SignIn = () => {
 
     const [email, setEmail] = useState("");
@@ -43,20 +41,19 @@ const SignIn = () => {
 
     const handleSubmit = e => {
         e.preventDefault(); 
-        console.log(email, password);
-      }
+      } //end of handleSubmit function
 
     const handleEmailChange = e => {
         setEmail({
         [e.target.id] : e.target.value
     })
-    }
+    } //end of HandleEmailChange function
 
     const handlePwdChange = e => {
         setPassword({
         [e.target.id] : e.target.value
     })
-    }
+    } //end of handlePwdChange function
 
     return (
         <StyledDiv onSubmit={ handleSubmit } >
@@ -80,8 +77,7 @@ const SignIn = () => {
                     />
 
                 <button type="submit">Login</button>
-                <p>Or make an account here: <Link to='./sign-up'>Sign Up</Link>  </p>
-                
+                <p>Or make an account here: <Link to='./sign-up'>Sign Up</Link>  </p>       
                              
             </StyledForm>
         </StyledDiv>
