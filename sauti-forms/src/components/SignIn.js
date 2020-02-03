@@ -1,11 +1,33 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import styled from 'styled-components';
+
+const StyledForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    text-align: center;
+    width: 30%;
+    height: 45vh;
+    min-width: 450px;
+    border: 1px solid black;
+`
+
+const StyledDiv = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 65vh;
+
+`
 
 const SignIn = () => {
 
     return (
-        <div>
-            <form>
+        <StyledDiv>
+            <StyledForm>
                 <label htmlFor="username">Username:</label>
                 <input
                     type="text"
@@ -23,10 +45,11 @@ const SignIn = () => {
                     />
 
                 <button type="submit">Login</button>
+                <h4>Or make an account here:</h4>
                 
                     <Link to='./sign-up'>Sign Up</Link>           
-            </form>
-        </div>
+            </StyledForm>
+        </StyledDiv>
     )
 }
 
