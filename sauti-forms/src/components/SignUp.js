@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
+import { axiosWithAuth } from "../axiosAuth";
 
 const StyledDiv = styled.div`
     display: flex;
@@ -35,67 +36,59 @@ const StyledInput = styled.input`
     padding-left: 5px;    
 `
 
-const SignUp = () => {
+const SignUp = props => {
 
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
+    const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const user = {
+        username: userName,
+        email: email,
+        password: password
+    }
+
     const handleSubmit = e => {
-        e.preventDefault(); 
+        e.preventDefault();
+        axiosWithAuth()
+        .post("/api/auth/register", user)
+        .then(res => {
+            console.log(res);
+            props.history.push("/");
+      }); 
       } //end of handleSubmit function
 
       const handleNameChange = e => {
-        setFirstName({
-        [e.target.id] : e.target.value
-    })
-    } //end of handlePwdChange function
-
-    const handleLastNameChange = e => {
-        setLastName({
-        [e.target.id] : e.target.value
-    })
+        setUserName(e.target.value)
     } //end of handlePwdChange function
 
     const handleEmailChange = e => {
-        setEmail({
-        [e.target.id] : e.target.value
-    })
+        setEmail(e.target.value)
     } //end of HandleEmailChange function
 
     const handlePwdChange = e => {
-        setPassword({
-        [e.target.id] : e.target.value
-    })
+        setPassword(e.target.value)
     } //end of handlePwdChange function
     
     return (
         <StyledDiv>
             <StyledForm onSubmit={ handleSubmit }>
-                <label htmlFor="first-name">First Name:</label>
+                <label htmlFor="user-name">Username:</label>
                 <StyledInput
                     type="text"
-                    placeholder="Enter First Name" 
-                    name="first-name" 
+                    placeholder="Enter Username" 
+                    name="user-name" 
+                    value={ userName }
                     required
                     onChange={ handleNameChange }
-                    />
-
-                <label htmlFor="last-name">Last Name:</label>
-                <StyledInput
-                    type="text"
-                    placeholder="Enter Last Name" 
-                    name="last-name" 
-                    required
-                    onChange={ handleLastNameChange }
                     />
 
                 <label htmlFor="email">Email:</label>
                 <StyledInput
                     type="email"
                     placeholder="Enter Email" 
-                    name="email" 
+                    name="email"
+                    value={ email } 
                     required
                     onChange={ handleEmailChange }
                     />
@@ -105,6 +98,7 @@ const SignUp = () => {
                     type="password" 
                     placeholder="Enter Password" 
                     name="password" 
+                    value={ password }
                     required
                     onChange={ handlePwdChange }
                     />

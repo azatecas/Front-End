@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
-
+import { axiosWithAuth } from "../axiosAuth";
 
 const StyledDiv = styled.div`
     display: flex;
@@ -34,35 +34,44 @@ const StyledInput = styled.input`
     border-radius: 10px;
 `
 
-const SignIn = () => {
+const SignIn = props => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const user = {
+        email: email,
+        password: password
+    }
+
     const handleSubmit = e => {
-        e.preventDefault(); 
+        e.preventDefault();
+        axiosWithAuth()
+        .post("/api/auth/login", user)
+        .then(res => {
+            console.log(res);
+            localStorage.setItem("token", res.data.token);
+            props.history.push("/home");
+      }); 
       } //end of handleSubmit function
 
     const handleEmailChange = e => {
-        setEmail({
-        [e.target.id] : e.target.value
-    })
+        setEmail(e.target.value)
     } //end of HandleEmailChange function
 
     const handlePwdChange = e => {
-        setPassword({
-        [e.target.id] : e.target.value
-    })
+        setPassword(e.target.value)
     } //end of handlePwdChange function
 
     return (
-        <StyledDiv onSubmit={ handleSubmit } >
-            <StyledForm>
+        <StyledDiv>
+            <StyledForm onSubmit={ handleSubmit }>
                 <label htmlFor="email">Email:</label>
                 <StyledInput
                     type="email"
                     placeholder="Enter Email"
                     name="email" 
+                    value={ email }
                     required
                     onChange={ handleEmailChange }
                     />
@@ -71,7 +80,8 @@ const SignIn = () => {
                 <StyledInput
                     type="password" 
                     placeholder="Enter Password"
-                    name="password" 
+                    name="password"
+                    value={ password }
                     required
                     onChange={ handlePwdChange }
                     />
