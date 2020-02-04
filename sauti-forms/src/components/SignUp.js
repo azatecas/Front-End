@@ -34,7 +34,11 @@ const StyledInput = styled.input`
     border: 1px solid gray;
     border-radius: 10px;
     padding-left: 5px;    
-`
+
+    &:focus {
+        outline: none;
+    }
+` //end of StyledInput
 
 const SignUp = props => {
 

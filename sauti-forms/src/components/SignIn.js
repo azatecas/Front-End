@@ -28,11 +28,16 @@ const StyledForm = styled.form`
 //end of StyledForm
 
 const StyledInput = styled.input`
-    width: 100%;
+    width: 98%;
     height: 30px;
     border: 1px solid gray;
     border-radius: 10px;
-`
+    padding: 0px 5px;
+
+    &:focus {
+        outline: none;
+    }
+` //end of StyledInput
 
 const SignIn = props => {
 
