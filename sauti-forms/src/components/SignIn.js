@@ -53,7 +53,7 @@ const SignIn = props => {
             localStorage.setItem("token", res.data.token);
             props.history.push("/home");
       }); 
-      } //end of handleSubmit function
+    } //end of handleSubmit function
 
     const handleUserChange = e => {
         setUsername(e.target.value)
