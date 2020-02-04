@@ -2,7 +2,8 @@ import React, { useState } from "react";
 
 const FlowForm = (props) => {
 
-    const [menu, setMenu] = setState({
+    const [menu, setMenu] = useState({
+        id: "",
         menuItem: "",
         itemContent: ""
     });
@@ -13,26 +14,30 @@ const FlowForm = (props) => {
 
     const submitForm = e => {
         e.preventDefault();
-        props.addNewItem(note);
-        setMenu({ menuItem: "", itemContent: "" });
+        props.addNewMenuItem(menu);
+        console.log('this is menu', menu);
+        setMenu({ 
+            menuItem: "", 
+            itemContent: ""
+         });
       };
 
 
     return (
-        <form>
+        <form onSubmit={ submitForm }>
             <label htmlFor='menu-item'>Menu Item</label>
             <input
                 id="menu-item"
                 type="text"
-                name="menu-item"
+                name="menuItem"
                 onChange={handleChanges}
                 placeholder="Menu Item"
             />
             <label htmlFor='item-content'>Item Content</label>
             <input
                 id="item-content"
-                type="textarea"
-                name="menu-item"
+                type="text"
+                name="itemContent"
                 onChange={handleChanges}
                 placeholder="Item Content"
             />
