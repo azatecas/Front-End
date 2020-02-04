@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import { axiosWithAuth } from "../axiosAuth";
+import axios from 'axios';
 
 const StyledDiv = styled.div`
     display: flex;
@@ -28,14 +29,20 @@ const StyledForm = styled.form`
 //end of StyledForm
 
 const StyledInput = styled.input`
-    width: 100%;
+    width: 98%;
     height: 30px;
     border: 1px solid gray;
     border-radius: 10px;
-`
+    padding: 0px 5px;
+
+    &:focus {
+        outline: none;
+    }
+` //end of StyledInput
 
 const SignIn = props => {
 
+    const [id, setId] = useState();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -46,12 +53,20 @@ const SignIn = props => {
 
     const handleSubmit = e => {
         e.preventDefault();
+        axios.get("https://sauti-studio-3.herokuapp.com/api/auth/users")
+        .then(res => {
+            setId(res.data.map(user => {
+                if(user.username === username) {
+                    return user.id;
+                }
+            }))
+        })
         axiosWithAuth()
         .post("/api/auth/login", user)
         .then(res => {
             console.log(res);
             localStorage.setItem("token", res.data.token);
-            props.history.push("/home");
+            props.history.push("/dashboard");
       }); 
     } //end of handleSubmit function
 
