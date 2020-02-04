@@ -56,7 +56,7 @@ const SignUp = props => {
             console.log(res);
             props.history.push("/");
       }); 
-      } //end of handleSubmit function
+    } //end of handleSubmit function
 
       const handleNameChange = e => {
         setUserName(e.target.value)
@@ -73,11 +73,11 @@ const SignUp = props => {
     return (
         <StyledDiv>
             <StyledForm onSubmit={ handleSubmit }>
-                <label htmlFor="user-name">Username:</label>
+                <label htmlFor="username">Username:</label>
                 <StyledInput
                     type="text"
                     placeholder="Enter Username" 
-                    name="user-name" 
+                    name="username" 
                     value={ userName }
                     required
                     onChange={ handleNameChange }

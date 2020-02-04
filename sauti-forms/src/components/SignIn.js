@@ -36,11 +36,11 @@ const StyledInput = styled.input`
 
 const SignIn = props => {
 
-    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     const user = {
-        email: email,
+        username: username,
         password: password
     }
 
@@ -53,10 +53,10 @@ const SignIn = props => {
             localStorage.setItem("token", res.data.token);
             props.history.push("/home");
       }); 
-      } //end of handleSubmit function
+    } //end of handleSubmit function
 
-    const handleEmailChange = e => {
-        setEmail(e.target.value)
+    const handleUserChange = e => {
+        setUsername(e.target.value)
     } //end of HandleEmailChange function
 
     const handlePwdChange = e => {
@@ -66,14 +66,14 @@ const SignIn = props => {
     return (
         <StyledDiv>
             <StyledForm onSubmit={ handleSubmit }>
-                <label htmlFor="email">Email:</label>
+                <label htmlFor="username">Username:</label>
                 <StyledInput
-                    type="email"
-                    placeholder="Enter Email"
-                    name="email" 
-                    value={ email }
+                    type="text"
+                    placeholder="Enter Username"
+                    name="username" 
+                    value={ username }
                     required
-                    onChange={ handleEmailChange }
+                    onChange={ handleUserChange }
                     />
 
                 <label htmlFor="password">Password:</label>
