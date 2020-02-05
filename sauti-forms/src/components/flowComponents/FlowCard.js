@@ -9,7 +9,7 @@ const BorderBox = styled.div`
     width: 300px;
     margin: 1%;
     padding: 2%;
-`
+` //
 
 const Title = styled.h2`
     text-decoration: none;
