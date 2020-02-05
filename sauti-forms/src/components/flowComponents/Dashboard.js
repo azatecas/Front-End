@@ -1,38 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
 import FlowForm from './FlowForm';
 import FlowCard from './FlowCard';
 import axios from 'axios';
 
 const Dashboard = props => {
-    const [menus, setMenus ] = useState([
-        {
-            id: 1,
-            menuItem: 'Sample Menu item',
-            itemContent: 'Sample Item'
-        }
-    ])
+    const [flows, setFlows ] = useState([])
 
-    const addNewMenuItem = param => {
-        const newMenu = {
-            id: Date.now,
-            menuItem: param.menuItem,
-            itemContent: param.itemContent
-        };
-        setMenus([...menus, newMenu]);
+    const logout = e => {
+        e.preventDefault();
+        localStorage.clear();
+        props.history.push("/");
     }
+
     useEffect(() => {
-        axios.get(`https://sauti-studio-3.herokuapp.com/api/users/${props.match.params.id}/flows`)
+        const id = localStorage.getItem("id");
+        axios.get(`https://sauti-studio-3.herokuapp.com/api/users/${id}/flows`)
         .then(res => {
-            console.log(res.data)
-            setMenus(res.data);
+            setFlows(res.data);
         })
-    },[])
+    },[flows.length])
     return (
         <div>
-            <h1>My Menu</h1>
-            <FlowForm addNewMenuItem = { addNewMenuItem } />
-            <FlowCard menus={ menus }/>
+            <h1>Sauti Studio</h1>
+            <button onClick={logout} style={{marginBottom: '1.5%'}}>Log out</button>
+            <FlowForm setFlows={setFlows}/>
+            <FlowCard flows={ flows }/>
         </div>
     )
 

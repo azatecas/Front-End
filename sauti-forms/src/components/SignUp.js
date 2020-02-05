@@ -57,7 +57,6 @@ const SignUp = props => {
         axiosWithAuth()
         .post("/api/auth/register", user)
         .then(res => {
-            console.log(res);
             props.history.push("/");
       }); 
     } //end of handleSubmit function
@@ -75,43 +74,46 @@ const SignUp = props => {
     } //end of handlePwdChange function
     
     return (
-        <StyledDiv>
-            <StyledForm onSubmit={ handleSubmit }>
-                <label htmlFor="username">Username:</label>
-                <StyledInput
-                    type="text"
-                    placeholder="Enter Username" 
-                    name="username" 
-                    value={ userName }
-                    required
-                    onChange={ handleNameChange }
-                    />
+        <>
+            <h1>Sauti Studio</h1>
+            <StyledDiv>
+                <StyledForm onSubmit={ handleSubmit }>
+                    <label htmlFor="username">Username:</label>
+                    <StyledInput
+                        type="text"
+                        placeholder="Enter Username" 
+                        name="username" 
+                        value={ userName }
+                        required
+                        onChange={ handleNameChange }
+                        />
 
-                <label htmlFor="email">Email:</label>
-                <StyledInput
-                    type="email"
-                    placeholder="Enter Email" 
-                    name="email"
-                    value={ email } 
-                    required
-                    onChange={ handleEmailChange }
-                    />
+                    <label htmlFor="email">Email:</label>
+                    <StyledInput
+                        type="email"
+                        placeholder="Enter Email" 
+                        name="email"
+                        value={ email } 
+                        required
+                        onChange={ handleEmailChange }
+                        />
 
-                <label htmlFor="password">Password:</label>
-                <StyledInput
-                    type="password" 
-                    placeholder="Enter Password" 
-                    name="password" 
-                    value={ password }
-                    required
-                    onChange={ handlePwdChange }
-                    />
+                    <label htmlFor="password">Password:</label>
+                    <StyledInput
+                        type="password" 
+                        placeholder="Enter Password" 
+                        name="password" 
+                        value={ password }
+                        required
+                        onChange={ handlePwdChange }
+                        />
 
-                <button type="submit">Register</button>
-                <p>Already have an account? <Link to='/sign-in'>Sign In</Link> </p>
-                            
-            </StyledForm>
-        </StyledDiv>
+                    <button type="submit">Register</button>
+                    <p>Already have an account? <Link to='/sign-in'>Sign In</Link> </p>
+                                
+                </StyledForm>
+            </StyledDiv>
+        </>
     )
 }
 
