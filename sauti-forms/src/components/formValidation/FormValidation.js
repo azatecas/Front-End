@@ -17,10 +17,10 @@ function FormValidation(initialState, validate, myProps) {
                 .then(res => {                
                     localStorage.setItem("token", res.data.token);
                     localStorage.setItem("id", res.data.user.id);
-                    myProps.history.push("/dashboard");             
+                    myProps.history.push("/dashboard");
                 })
                 .catch(err => {
-                    console.log('this is error',err);
+                    console.log('Invalid Sign In',err);
                 })
                 setSubmitting(false);
             } else {
