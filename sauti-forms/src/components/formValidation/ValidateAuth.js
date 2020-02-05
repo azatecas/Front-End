@@ -1,16 +1,16 @@
-export default function ValidateAuth(values){
+export default function ValidateAuth(user){
     let errors = {};
     //username errors conditionals
-    if(!values.username){
+    if(!user.username){
         errors.username = 'Required username!';
-    }else if (!/^(?=.{5,25}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/i.test(values.username)) {
+    }else if (!/^(?=.{5,25}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/i.test(user.username)) {
         errors.username = 'Invalid username';
     }
 
     //password errors conditionals
-    if (!values.password){
+    if (!user.password){
         errors.password = 'Required Password!'
-    } else if (values.password.length < 6 ) {
+    } else if (user.password.length < 6 ) {
         errors.password = 'Password must be at least 6 characters'
     }
 
