@@ -3,7 +3,7 @@ import { axiosWithAuth } from "../../axiosAuth";
 
 function FormValidation(initialState, validate, myProps) {
 
-    const [values, setValues] = useState(initialState);
+    const [user, setUser] = useState(initialState);
     //checks to see if errors occur 
     const [errors, setErrors] = useState({})
     const [isSubmitting, setSubmitting] = useState(false)
@@ -13,7 +13,7 @@ function FormValidation(initialState, validate, myProps) {
             const noErrors = Object.keys(errors).length === 0;
             if(noErrors){
                 axiosWithAuth()
-                .post("/api/auth/login", values)
+                .post("/api/auth/login", user)
                 .then(res => {                
                     localStorage.setItem("token", res.data.token);
                     localStorage.setItem("id", res.data.user.id);
@@ -30,24 +30,24 @@ function FormValidation(initialState, validate, myProps) {
     }, [errors]);
 
     const handleChange = e => {
-        setValues({
-             ...values,
+        setUser({
+             ...user,
             [e.target.name]: e.target.value
         })       
     }
 
     const handleBlur = () => {
-        const validationErrors = validate(values);
+        const validationErrors = validate(user);
         setErrors(validationErrors);   
     }
 
     const handleSubmit = e => {
         e.preventDefault();
-        const validationErrors = validate(values);
+        const validationErrors = validate(user);
         setErrors(validationErrors);  
         setSubmitting(true);         
     } //end of handleSubmit function
 
-    return { handleChange, values, handleSubmit, handleBlur, errors, isSubmitting }
+    return { handleChange, user, handleSubmit, handleBlur, errors, isSubmitting }
 }
 export default FormValidation;
