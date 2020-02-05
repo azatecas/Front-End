@@ -1,10 +1,20 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import "../App.css";
-
+import styled from 'styled-components';
 //importing form validation components
 import FormValidation from './formValidation/FormValidation';
 import ValidateAuth from './formValidation/ValidateAuth';
+
+const Button = styled.button`
+    border: 2px solid black;
+    padding: 2%;
+    background-color: white;
+    &:hover {
+        background-color: black;
+        color: white;
+    }
+`
 
 const SignIn = props => {
     const myProps = props;    
@@ -43,7 +53,7 @@ const SignIn = props => {
                         />
                         {errors.password && <p className="errors-input">{errors.password}</p>}
 
-                    <button disabled={isSubmitting} type="submit">Login</button>
+                    <Button disabled={isSubmitting} type="submit">Login</Button>
                     <p>Or make an account here: <Link to='./sign-up'>Sign Up</Link>  </p>       
                                 
                 </form>

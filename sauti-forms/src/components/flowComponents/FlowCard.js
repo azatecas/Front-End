@@ -9,13 +9,20 @@ const BorderBox = styled.div`
     padding: 2%;
 `
 
+const Title = styled.h2`
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+`
+
 const FlowCard = (props) => {
     return (
     <div>
     {props.flows.map(item => (
         <BorderBox key={item.id}>
-            <Link to={`/flow/${item.id}`}><h2>{item.name}</h2></Link>
-            <p>{item.category}</p>
+            <Link to={`/flow/${item.id}`} style={{textDecoration: 'none', color: 'black'}}><Title>{item.name}</Title></Link>
+            <h3>{item.category}</h3>
         </BorderBox>
     ))}
     </div>

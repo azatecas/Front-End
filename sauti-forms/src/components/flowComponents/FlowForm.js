@@ -1,5 +1,17 @@
 import React, { useState } from "react";
 import { axiosWithAuth } from "../../axiosAuth";
+import styled from 'styled-components';
+
+const Button = styled.button`
+    border: 2px solid black;
+    padding: .2%;
+    margin-left: 1%;
+    background-color: white;
+    &:hover {
+        background-color: black;
+        color: white;
+    }
+`
 
 const FlowForm = (props) => {
 
@@ -47,7 +59,7 @@ const FlowForm = (props) => {
                 placeholder="Category"
             />
 
-            <button type="submit">Add Note</button>
+            <Button type="submit">Add Note</Button>
         </form>
     )
 }
