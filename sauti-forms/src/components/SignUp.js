@@ -5,6 +5,7 @@ import "../App.css";
 import styled from 'styled-components';
 
 const Button = styled.button`
+    margin-top: 2%;
     border: 2px solid black;
     padding: 2%;
     background-color: white;
@@ -30,9 +31,12 @@ const SignUp = props => {
         e.preventDefault();
         axiosWithAuth()
         .post("/api/auth/register", user)
-        .then(res => {
-            props.history.push("/");
-      }); 
+        .then(() => {
+            props.history.push("/sign-in");
+        })
+        .catch(err => {
+            console.log(err);
+        })
     } //end of handleSubmit function
 
       const handleNameChange = e => {

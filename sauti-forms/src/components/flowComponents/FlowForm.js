@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { axiosWithAuth } from "../../axiosAuth";
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { addFlow } from '../../actions';
 
 const Button = styled.button`
     border: 2px solid black;
-    padding: .2%;
+    padding: .5%;
     margin-left: 1%;
     background-color: white;
     &:hover {
@@ -26,17 +27,8 @@ const FlowForm = (props) => {
 
     const submitForm = e => {
         e.preventDefault();
-        const id = localStorage.getItem("id");
-        axiosWithAuth().post(`https://sauti-studio-3.herokuapp.com/api/users/${id}/flows`, item)
-        .then(() => {
-            props.setFlows([
-                {
-                    id: 1,
-                    name: "",
-                    category: ""
-                }
-            ])
-        })
+        props.addFlow(item);
+        e.target.reset();
       };
 
 
@@ -49,6 +41,7 @@ const FlowForm = (props) => {
                 name="name"
                 onChange={handleChanges}
                 placeholder="Name"
+                style={{marginRight: '1%'}}
             />
             <label htmlFor='category'>Category: </label>
             <input
@@ -64,4 +57,4 @@ const FlowForm = (props) => {
     )
 }
 
-export default FlowForm;
+export default connect(null, { addFlow })(FlowForm);
