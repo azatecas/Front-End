@@ -2,43 +2,44 @@ import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import { axiosWithAuth } from "../axiosAuth";
+import "../App.css";
 
-const StyledDiv = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 65vh;
+// const StyledDiv = styled.div`
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: center;
+//     align-items: center;
+//     width: 100%;
+//     height: 65vh;
 
-` 
-//end of StyledDiv component
+// ` 
+// //end of StyledDiv component
 
-const StyledForm = styled.form`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: start;
-    text-align: center;
-    width: 30%;
-    height: 50vh;
-    min-width: 450px;
-    border: 1px solid black;
-    padding: 5px;
-`
- //end of StyledForm component
+// const StyledForm = styled.form`
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-between;
+//     align-items: start;
+//     text-align: center;
+//     width: 30%;
+//     height: 50vh;
+//     min-width: 450px;
+//     border: 1px solid black;
+//     padding: 5px;
+// `
+//  //end of StyledForm component
 
-const StyledInput = styled.input`
-    width: 98%;
-    height: 30px;
-    border: 1px solid gray;
-    border-radius: 10px;
-    padding-left: 5px;    
+// const StyledInput = styled.input`
+//     width: 98%;
+//     height: 30px;
+//     border: 1px solid gray;
+//     border-radius: 10px;
+//     padding-left: 5px;    
 
-    &:focus {
-        outline: none;
-    }
-` //end of StyledInput
+//     &:focus {
+//         outline: none;
+//     }
+// ` //end of StyledInput
 
 const SignUp = props => {
 
@@ -76,10 +77,10 @@ const SignUp = props => {
     return (
         <>
             <h1>Sauti Studio</h1>
-            <StyledDiv>
-                <StyledForm onSubmit={ handleSubmit }>
+            <div className="styled-div">
+                <form className="styled-form" onSubmit={ handleSubmit }>
                     <label htmlFor="username">Username:</label>
-                    <StyledInput
+                    <input className="styled-input"
                         type="text"
                         placeholder="Enter Username" 
                         name="username" 
@@ -89,7 +90,7 @@ const SignUp = props => {
                         />
 
                     <label htmlFor="email">Email:</label>
-                    <StyledInput
+                    <input className="styled-input"
                         type="email"
                         placeholder="Enter Email" 
                         name="email"
@@ -99,7 +100,7 @@ const SignUp = props => {
                         />
 
                     <label htmlFor="password">Password:</label>
-                    <StyledInput
+                    <input className="styled-input"
                         type="password" 
                         placeholder="Enter Password" 
                         name="password" 
@@ -111,8 +112,8 @@ const SignUp = props => {
                     <button type="submit">Register</button>
                     <p>Already have an account? <Link to='/sign-in'>Sign In</Link> </p>
                                 
-                </StyledForm>
-            </StyledDiv>
+                </form>
+            </div>
         </>
     )
 }

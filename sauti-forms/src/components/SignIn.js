@@ -2,42 +2,7 @@ import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import { axiosWithAuth } from "../axiosAuth";
-
-const StyledDiv = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 65vh;
-`
-//end of StyledDiv
-
-const StyledForm = styled.form`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: start;
-    text-align: center;
-    width: 30%;
-    height: 25vh;
-    min-width: 450px;
-    border: 1px solid black;
-    padding: 10px;
-`
-//end of StyledForm
-
-const StyledInput = styled.input`
-    width: 98%;
-    height: 30px;
-    border: 1px solid gray;
-    border-radius: 10px;
-    padding: 0px 5px;
-
-    &:focus {
-        outline: none;
-    }
-` //end of StyledInput
+import "../App.css";
 
 const SignIn = props => {
 
@@ -70,10 +35,10 @@ const SignIn = props => {
     return (
         <>
             <h1>Sauti Studio</h1>
-            <StyledDiv>
-                <StyledForm onSubmit={ handleSubmit }>
+            <div className="styled-div">
+                <form className="styled-form" onSubmit={ handleSubmit }>
                     <label htmlFor="username">Username:</label>
-                    <StyledInput
+                    <input className="styled-input"
                         type="text"
                         placeholder="Enter Username"
                         name="username" 
@@ -83,7 +48,7 @@ const SignIn = props => {
                         />
 
                     <label htmlFor="password">Password:</label>
-                    <StyledInput
+                    <input className="styled-input"
                         type="password" 
                         placeholder="Enter Password"
                         name="password"
@@ -95,8 +60,8 @@ const SignIn = props => {
                     <button type="submit">Login</button>
                     <p>Or make an account here: <Link to='./sign-up'>Sign Up</Link>  </p>       
                                 
-                </StyledForm>
-            </StyledDiv>
+                </form>
+            </div>
         </>
     )
 }
