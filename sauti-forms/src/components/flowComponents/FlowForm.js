@@ -1,45 +1,50 @@
 import React, { useState } from "react";
+import { axiosWithAuth } from "../../axiosAuth";
 
 const FlowForm = (props) => {
 
-    const [menu, setMenu] = useState({
-        id: "",
-        menuItem: "",
-        itemContent: ""
+    const [item, setItem] = useState({
+        name: "",
+        category: ""
     });
 
     const handleChanges = e => {
-        setMenu({ ...menu, [e.target.name]: e.target.value});
+        setItem({ ...item, [e.target.name]: e.target.value});
     }
 
     const submitForm = e => {
         e.preventDefault();
-        props.addNewMenuItem(menu);
-        console.log('this is menu', menu);
-        setMenu({ 
-            menuItem: "", 
-            itemContent: ""
-         });
+        const id = localStorage.getItem("id");
+        axiosWithAuth().post(`https://sauti-studio-3.herokuapp.com/api/users/${id}/flows`, item)
+        .then(() => {
+            props.setFlows([
+                {
+                    id: 1,
+                    name: "",
+                    category: ""
+                }
+            ])
+        })
       };
 
 
     return (
         <form onSubmit={ submitForm }>
-            <label htmlFor='menu-item'>Menu Item</label>
+            <label htmlFor='name'>Name: </label>
             <input
-                id="menu-item"
+                id="name"
                 type="text"
-                name="menuItem"
+                name="name"
                 onChange={handleChanges}
-                placeholder="Menu Item"
+                placeholder="Name"
             />
-            <label htmlFor='item-content'>Item Content</label>
+            <label htmlFor='category'>Category: </label>
             <input
-                id="item-content"
+                id="category"
                 type="text"
-                name="itemContent"
+                name="category"
                 onChange={handleChanges}
-                placeholder="Item Content"
+                placeholder="Category"
             />
 
             <button type="submit">Add Note</button>
