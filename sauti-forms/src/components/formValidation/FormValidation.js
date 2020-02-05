@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { axiosWithAuth } from "../../axiosAuth";
 
 function FormValidation(initialState, validate, myProps) {
@@ -14,11 +14,10 @@ function FormValidation(initialState, validate, myProps) {
             if(noErrors){
                 axiosWithAuth()
                 .post("/api/auth/login", values)
-                .then(res => {
-                    console.log('response', res)
-                localStorage.setItem("token", res.data.token);
-                localStorage.setItem("id", res.data.user.id);
-                myProps.history.push("/dashboard");             
+                .then(res => {                
+                    localStorage.setItem("token", res.data.token);
+                    localStorage.setItem("id", res.data.user.id);
+                    myProps.history.push("/dashboard");             
                 })
                 .catch(err => {
                     console.log('this is error',err);
@@ -27,8 +26,7 @@ function FormValidation(initialState, validate, myProps) {
             } else {
                 setSubmitting(false);
             }
-        }
-        
+        }        
     }, [errors]);
 
     const handleChange = e => {
@@ -47,9 +45,7 @@ function FormValidation(initialState, validate, myProps) {
         e.preventDefault();
         const validationErrors = validate(values);
         setErrors(validationErrors);  
-        setSubmitting(true);
-
-         
+        setSubmitting(true);         
     } //end of handleSubmit function
 
     return { handleChange, values, handleSubmit, handleBlur, errors, isSubmitting }

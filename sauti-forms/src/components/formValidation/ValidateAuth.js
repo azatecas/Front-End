@@ -3,7 +3,7 @@ export default function ValidateAuth(values){
     //username errors conditionals
     if(!values.username){
         errors.username = 'Required username!';
-    }else if (!/^(?=.{5,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/i.test(values.username)) {
+    }else if (!/^(?=.{5,25}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/i.test(values.username)) {
         errors.username = 'Invalid username';
     }
 
