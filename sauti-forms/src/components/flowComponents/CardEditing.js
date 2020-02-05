@@ -1,9 +1,21 @@
 import React, { useState } from 'react';
 import { axiosWithAuth } from '../../axiosAuth';
+import styled from 'styled-components';
+import { connect } from 'react-redux';
+
+const Button = styled.button`
+    border: 2px solid black;
+    padding: 2%;
+    background-color: white;
+    &:hover {
+        background-color: black;
+        color: white;
+    }
+`
 
 const CardEditing = props => {
-    const [title, setTitle] = useState(props.name);
-    const [desc, setDesc] = useState(props.category);
+    const [title, setTitle] = useState(props.flow.name);
+    const [desc, setDesc] = useState(props.flow.category);
     const newTitle = {
         name: title,
         category: desc
@@ -22,14 +34,23 @@ const CardEditing = props => {
         .then(() => {
             props.push("/dashboard")
         })
+        .catch(err => {
+            console.log(err);
+        })
     }
     return(
         <form onSubmit={handleSubmit}>
-            <h1>Name: <input type="text" placeholder="Name" value={title} onChange={handleTitleChanges} style={{marginTop: '3%', marginBottom: '5%', marginRight: '5%'}}/></h1>
-            <h4>Category: <input type="text" placeholder="Category" value={desc} onChange={handleDescChanges} style={{marginBottom: '5%', marginRight: '5%'}}/></h4>
-            <button>Save</button>
+            <h1>Name: <input type="text" placeholder="Name" value={title} onChange={handleTitleChanges}/></h1>
+            <h4>Category: <input type="text" placeholder="Category" value={desc} onChange={handleDescChanges}/></h4>
+            <Button>Save</Button>
         </form>
     )
 }
 
-export default CardEditing;
+const mapStateToProps = state => {
+    return {
+        flow: state.flow
+    }
+}
+
+export default connect(mapStateToProps, {})(CardEditing);

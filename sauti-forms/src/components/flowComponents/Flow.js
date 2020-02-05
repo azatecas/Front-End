@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import FlowPage from './FlowPage';
 import { axiosWithAuth } from '../../axiosAuth';
 import CardInfo from './CardInfo';
 import CardEditing from './CardEditing';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { getFlow } from '../../actions'
 
 const Logout = styled.button`
     margin-bottom: 1.5;
@@ -37,20 +38,18 @@ const BorderBox = styled.div`
 
 const Input1 = styled.input`
     margin-top: 5%;
+    margin-bottom: 5%;
     margin-right: 5%;
+    padding: 1%;
 `
 
 const Input2 = styled.input`
     margin-bottom: 5%;
     margin-right: 5%;
+    padding: 1%;
 `
 
 const Flow = props => {
-    const state = {
-        name: "",
-        category: "",
-        pages: []
-    }
     const logout = e => {
         e.preventDefault();
         localStorage.clear();
@@ -59,7 +58,6 @@ const Flow = props => {
     const [isEditing, setEditing] = useState(false);
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
-    const [flow, setFlow] = useState(state);
     const handleTitleChanges = e => {
         e.preventDefault();
         setTitle(e.target.value);
@@ -83,18 +81,15 @@ const Flow = props => {
         setEditing(true)
     }
     useEffect(() => {
-        axios.get(`https://sauti-studio-3.herokuapp.com/api/users/flows/${props.match.params.id}`)
-        .then(res => {
-            setFlow(res.data);
-        })
+        props.getFlow(props.match.params.id)
     },[props.match.params.id])
     return(
         <div>
             <h1>Sauti Studio</h1>
             <Logout onClick={logout}>Log out</Logout>
             <BorderBox>
-                {isEditing ? <CardEditing id={props.match.params.id} push={props.history.push} name={flow.name} category={flow.category}/> : <CardInfo name={flow.name} category={flow.category}/>}
-                {flow.pages.map(item => (
+                {isEditing ? <CardEditing id={props.match.params.id} push={props.history.push}/> : <CardInfo />}
+                {props.flow.pages.map(item => (
                     <FlowPage key={item.id} page={item}/>
                 ))}
                 {isEditing ? null : <Button onClick={editItem}>Edit</Button>}
@@ -109,4 +104,10 @@ const Flow = props => {
     )
 }
 
-export default Flow;
+const mapStateToProps = state => {
+    return {
+        flow: state.flow
+    }
+}
+
+export default connect(mapStateToProps, { getFlow })(Flow);

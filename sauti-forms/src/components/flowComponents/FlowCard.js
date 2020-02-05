@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { getFlows } from '../../actions';
 
 const BorderBox = styled.div`
     border: 1px solid black;
@@ -17,16 +19,28 @@ const Title = styled.h2`
 `
 
 const FlowCard = (props) => {
+    
+    useEffect(() => {
+        props.getFlows();
+    },[props.isUpdating])
+
     return (
-    <div>
-    {props.flows.map(item => (
-        <BorderBox key={item.id}>
-            <Link to={`/flow/${item.id}`} style={{textDecoration: 'none', color: 'black'}}><Title>{item.name}</Title></Link>
-            <h3>{item.category}</h3>
-        </BorderBox>
-    ))}
-    </div>
+        <div>
+        {props.flows.map(item => (
+            <BorderBox key={item.id}>
+                <Link to={`/flow/${item.id}`} style={{textDecoration: 'none', color: 'black'}}><Title>{item.name}</Title></Link>
+                <h3>{item.category}</h3>
+            </BorderBox>
+        ))}
+        </div>
     );
 };
 
-export default FlowCard;
+const mapStateToProps = state => {
+    return {
+        isUpdating: state.isUpdating,
+        flows: state.flows
+    }
+}
+
+export default connect(mapStateToProps, { getFlows })(FlowCard);
