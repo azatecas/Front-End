@@ -2,7 +2,17 @@ import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { axiosWithAuth } from "../axiosAuth";
 import "../App.css";
+import styled from 'styled-components';
 
+const Button = styled.button`
+    border: 2px solid black;
+    padding: 2%;
+    background-color: white;
+    &:hover {
+        background-color: black;
+        color: white;
+    }
+`
 
 const SignUp = props => {
 
@@ -72,7 +82,7 @@ const SignUp = props => {
                         onChange={ handlePwdChange }
                         />
 
-                    <button type="submit">Register</button>
+                    <Button type="submit">Register</Button>
                     <p>Already have an account? <Link to='/sign-in'>Sign In</Link> </p>
                                 
                 </form>
