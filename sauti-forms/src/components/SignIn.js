@@ -12,7 +12,7 @@ const SignIn = props => {
         username: "",
         password: ""
     }
-    const { handleChange, values, handleSubmit, handleBlur, errors, isSubmitting } = FormValidation(INITIAL_STATE, ValidateAuth, myProps);
+    const { handleChange, user, handleSubmit, handleBlur, errors, isSubmitting } = FormValidation(INITIAL_STATE, ValidateAuth, myProps);
 
     return (
         <>
@@ -24,7 +24,7 @@ const SignIn = props => {
                         type="text"
                         placeholder="Enter Username"
                         name="username" 
-                        value={ values.username }
+                        value={ user.username }
                         required
                         onChange={ handleChange }
                         onBlur={ handleBlur }
@@ -36,7 +36,7 @@ const SignIn = props => {
                         type="password" 
                         placeholder="Enter Password"
                         name="password"
-                        value={ values.password }
+                        value={ user.password }
                         required
                         onChange={ handleChange }
                         onBlur={ handleBlur }
