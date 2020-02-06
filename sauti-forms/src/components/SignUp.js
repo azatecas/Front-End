@@ -34,7 +34,6 @@ const SignUp = props => {
     return (
         <>
             <h1 style={{padding: '1%'}}>Sauti Studio</h1>
-            <a href="https://fervent-bassi-308b70.netlify.com/">Return to Marketing Page</a>
             <div className="styled-div">
                 <form className="styled-form" onSubmit={ handleSubmit }>
                     <label htmlFor="username">Username:</label>
@@ -74,7 +73,9 @@ const SignUp = props => {
                         {errors.password && <p className="error-input">{errors.password}</p>}
 
                     <Button disable={isSubmitting} type="submit">Register</Button>
-                    <p>Already have an account? <Link to='/sign-in'>Sign In</Link> </p>                                
+                    
+                    <p>Already have an account? <Link to='/sign-in'>Sign In</Link> </p>         
+                    <a href="https://fervent-bassi-308b70.netlify.com/">Return to Marketing Page</a>                       
                 </form>
             </div>
         </>
