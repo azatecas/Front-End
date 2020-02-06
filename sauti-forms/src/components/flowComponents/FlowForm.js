@@ -46,6 +46,7 @@ const FlowForm = (props) => {
                 placeholder="Name"
                 value={item.name}
                 style={{marginRight: '1%'}}
+                required
             />
             <label htmlFor='category'>Category: </label>
             <input
