@@ -8,14 +8,17 @@ import SignUpValidation from './formValidation/SignUpValidation';
 import SignUpAuth from './formValidation/SignUpAuth';
 
 const Button = styled.button`
-    margin-top: 2%;
     border: 2px solid black;
     padding: 2%;
-    background-color: white;
+    background-color: black;
+    color: white;
     &:hover {
-        background-color: black;
-        color: white;
+        background-color: white;
+        color: black;
     }
+    @media (max-width: 500px) {
+    width: 100%;
+  }
 ` //end of Button 
 
 const SignUp = props => {
@@ -44,7 +47,7 @@ const SignUp = props => {
                         onChange={ handleChange }
                         onBlur={ handleBlur }
                         />
-                        {errors.username && <p>{errors.username}</p>}
+                        {errors.username && <p className="error-input">{errors.username}</p>}
 
                     <label htmlFor="email">Email:</label>
                     <input className="styled-input"
@@ -56,7 +59,7 @@ const SignUp = props => {
                         onChange={ handleChange }
                         onBlur={ handleBlur }
                          />
-                        {errors.email && <p>{errors.email}</p>}
+                        {errors.email && <p className="error-input">{errors.email}</p>}
 
                     <label htmlFor="password">Password:</label>
                     <input className="styled-input"
@@ -68,7 +71,7 @@ const SignUp = props => {
                         onChange={ handleChange }
                         onBlur={ handleBlur }
                         />
-                        {errors.password && <p>{errors.password}</p>}
+                        {errors.password && <p className="error-input">{errors.password}</p>}
 
                     <Button disable={isSubmitting} type="submit">Register</Button>
                     <p>Already have an account? <Link to='/sign-in'>Sign In</Link> </p>                                
