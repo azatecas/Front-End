@@ -13,6 +13,10 @@ const Button = styled.button`
     }
 `
 
+const Box = styled.div`
+    padding: 2%
+`
+
 const Dashboard = props => {
 
     const logout = e => {
@@ -23,10 +27,12 @@ const Dashboard = props => {
 
     return (
         <div>
-            <h1>Sauti Studio</h1>
-            <Button onClick={logout} style={{marginBottom: '1.5%'}}>Log out</Button>
-            <FlowForm />
-            <FlowCard />
+            <Box>
+                <h1>Sauti Studio</h1>
+                <Button onClick={logout} style={{marginBottom: '1.5%'}}>Log out</Button>
+                <FlowForm />
+                <FlowCard />
+            </Box>
         </div>
     )
 

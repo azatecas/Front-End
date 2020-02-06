@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { getFlows } from '../../actions';
 
 const BorderBox = styled.div`
-    border: 1px solid black;
+    border: 2px solid black;
     width: 300px;
     margin: 1%;
     padding: 2%;

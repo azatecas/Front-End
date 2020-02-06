@@ -26,7 +26,7 @@ const SignIn = props => {
 
     return (
         <>
-            <h1>Sauti Studio</h1>
+            <h1 style={{padding: '1%'}}>Sauti Studio</h1>
             <div className="styled-div">
                 <form className="styled-form" onSubmit={ handleSubmit }>
                     <label htmlFor="username">Username:</label>

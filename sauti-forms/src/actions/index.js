@@ -3,6 +3,7 @@ import { axiosWithAuth } from "../axiosAuth"
 export const FETCH_FLOWS = "FETCH_FLOWS";
 export const UPDATING = "UPDATING";
 export const GET_FLOW = "GET_FLOW";
+export const DELETE_PAGE = "DELETE_PAGE";
 
 export const getFlows = () => dispatch => {
     const id = localStorage.getItem("id");
@@ -34,5 +35,12 @@ export const getFlow = id => dispatch => {
     })
     .catch(err => {
         console.log(err);
+    })
+}
+
+export const deletePage = id => dispatch => {
+    return axiosWithAuth().delete(`https://sauti-studio-3.herokuapp.com/api/users/pages/${id}`)
+    .then(() => {
+        dispatch({ type: DELETE_PAGE })
     })
 }

@@ -8,7 +8,7 @@ import { PrivateRoute } from './PrivateRoute';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Route exact path='/' component={SignUp} />
       <Route path='/sign-in' component={SignIn} />
       <Route path='/sign-up' component={SignUp} />
