@@ -9,14 +9,16 @@ import ValidateAuth from './formValidation/ValidateAuth';
 const Button = styled.button`
     border: 2px solid black;
     padding: 2%;
-    background-color: white;
+    background-color: black;
+    color: white;
     &:hover {
-        background-color: black;
-        color: white;
+        background-color: white;
+        color: black;
     }
+    @media (max-width: 500px) {
+    width: 100%;
+  }
 `
-
-
 const SignIn = props => {
     const myProps = props;    
     const INITIAL_STATE = {
@@ -41,7 +43,7 @@ const SignIn = props => {
                         onChange={ handleChange }
                         onBlur={ handleBlur }
                         />
-                        {errors.username && <p className="errors-input">{errors.username}</p>}
+                        {errors.username && <p className="error-input">{errors.username}</p>}
 
                     <label htmlFor="password">Password:</label>
                     <input className="styled-input"
@@ -53,7 +55,7 @@ const SignIn = props => {
                         onChange={ handleChange }
                         onBlur={ handleBlur }
                         />
-                        {errors.password && <p className="errors-input">{errors.password}</p>}
+                        {errors.password && <p className="error-input">{errors.password}</p>}
 
                     <Button disabled={isSubmitting} type="submit">Login</Button>
                     <p>Or make an account here: <Link to='./sign-up'>Sign Up</Link>  </p>       
