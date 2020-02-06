@@ -23,6 +23,7 @@ const Button = styled.button`
     border: 2px solid black;
     padding: 2%;
     background-color: white;
+    color: black;
     &:hover {
         background-color: black;
         color: white;
@@ -95,6 +96,10 @@ const Flow = props => {
         e.preventDefault();
         setEditing(true)
     }
+    const goHome = e => {
+        e.preventDefault();
+        props.history.push("/dashboard")
+    }
     useEffect(() => {
         props.getFlow(props.match.params.id)
     },[props.pageUpdating])
@@ -113,7 +118,7 @@ const Flow = props => {
                     <Input2 type="text" placeholder="Description" value={desc} onChange={handleDescChanges}/>
                     <Button>Add page</Button>
                 </form>
-                <Button><Link to="/dashboard" style={{textDecoration: 'none', color: 'black'}}>Home</Link></Button>
+                <Button onClick={goHome}>Home</Button>
                 <Button style={{marginLeft: '5%'}} onClick={deleteItem}>Delete</Button>
             </BorderBox>
         </Box>
