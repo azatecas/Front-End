@@ -31,5 +31,8 @@
 .error-input {
     background-color: pink;
     border: 1px solid red;
+}
 
+body {
+    font-family: 'Ubuntu', sans-serif;
 }

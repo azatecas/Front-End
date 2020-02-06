@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const CardInfo = props => {
-    console.log(props)
     return(
         <>
             <h1>Name: {props.flow.name}</h1>
