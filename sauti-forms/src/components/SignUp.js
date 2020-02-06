@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
-import { axiosWithAuth } from "../axiosAuth";
 import "../App.css";
 import styled from 'styled-components';
+
+//importing form validation components
+import SignUpValidation from './formValidation/SignUpValidation';
+import SignUpAuth from './formValidation/SignUpAuth';
 
 const Button = styled.button`
     margin-top: 2%;
@@ -13,44 +16,18 @@ const Button = styled.button`
         background-color: black;
         color: white;
     }
-`
+` //end of Button 
 
 const SignUp = props => {
-
-    const [userName, setUserName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-
-    const user = {
-        username: userName,
-        email: email,
-        password: password
+    const myProps = props;
+    const INITIAL_STATE = {
+        username: "",
+        email: "",
+        password: ""
     }
-
-    const handleSubmit = e => {
-        e.preventDefault();
-        axiosWithAuth()
-        .post("/api/auth/register", user)
-        .then(() => {
-            props.history.push("/sign-in");
-        })
-        .catch(err => {
-            console.log(err);
-        })
-    } //end of handleSubmit function
-
-      const handleNameChange = e => {
-        setUserName(e.target.value)
-    } //end of handlePwdChange function
-
-    const handleEmailChange = e => {
-        setEmail(e.target.value)
-    } //end of HandleEmailChange function
-
-    const handlePwdChange = e => {
-        setPassword(e.target.value)
-    } //end of handlePwdChange function
     
+    const { handleSubmit, handleChange, handleBlur, isSubmitting, errors, user } = SignUpValidation(INITIAL_STATE, SignUpAuth, myProps);
+
     return (
         <>
             <h1>Sauti Studio</h1>
@@ -61,34 +38,39 @@ const SignUp = props => {
                         type="text"
                         placeholder="Enter Username" 
                         name="username" 
-                        value={ userName }
+                        value={ user.username }
                         required
-                        onChange={ handleNameChange }
+                        onChange={ handleChange }
+                        onBlur={ handleBlur }
                         />
+                        {errors.username && <p>{errors.username}</p>}
 
                     <label htmlFor="email">Email:</label>
                     <input className="styled-input"
                         type="email"
                         placeholder="Enter Email" 
                         name="email"
-                        value={ email } 
+                        value={ user.email } 
                         required
-                        onChange={ handleEmailChange }
-                        />
+                        onChange={ handleChange }
+                        onBlur={ handleBlur }
+                         />
+                        {errors.email && <p>{errors.email}</p>}
 
                     <label htmlFor="password">Password:</label>
                     <input className="styled-input"
                         type="password" 
                         placeholder="Enter Password" 
                         name="password" 
-                        value={ password }
+                        value={ user.password }
                         required
-                        onChange={ handlePwdChange }
+                        onChange={ handleChange }
+                        onBlur={ handleBlur }
                         />
+                        {errors.password && <p>{errors.password}</p>}
 
-                    <Button type="submit">Register</Button>
-                    <p>Already have an account? <Link to='/sign-in'>Sign In</Link> </p>
-                                
+                    <Button disable={isSubmitting} type="submit">Register</Button>
+                    <p>Already have an account? <Link to='/sign-in'>Sign In</Link> </p>                                
                 </form>
             </div>
         </>
