@@ -16,6 +16,7 @@ const Button = styled.button`
     }
 `
 
+
 const SignIn = props => {
     const myProps = props;    
     const INITIAL_STATE = {
@@ -27,6 +28,7 @@ const SignIn = props => {
     return (
         <>
             <h1 style={{padding: '1%'}}>Sauti Studio</h1>
+            <a href="https://fervent-bassi-308b70.netlify.com/">Return to Marketing Page</a>
             <div className="styled-div">
                 <form className="styled-form" onSubmit={ handleSubmit }>
                     <label htmlFor="username">Username:</label>
