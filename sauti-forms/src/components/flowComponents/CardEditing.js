@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { axiosWithAuth } from '../../axiosAuth';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { getFlow } from '../../actions';
 
 const Button = styled.button`
     border: 2px solid black;
@@ -32,7 +33,8 @@ const CardEditing = props => {
         e.preventDefault();
         axiosWithAuth().put(`https://sauti-studio-3.herokuapp.com/api/users/flows/${props.id}`, newTitle)
         .then(() => {
-            props.push("/dashboard")
+            props.setEditing(false)
+            props.getFlow(props.id)
         })
         .catch(err => {
             console.log(err);
@@ -53,4 +55,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {})(CardEditing);
+export default connect(mapStateToProps, { getFlow })(CardEditing);
