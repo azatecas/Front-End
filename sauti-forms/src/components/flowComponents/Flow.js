@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { getFlow } from '../../actions'
 
 const Logout = styled.button`
-    margin-bottom: 2%;
+    margin-bottom: 1%;
     border: 2px solid black;
     padding: .5%;
     background-color: white;
@@ -108,7 +108,7 @@ const Flow = props => {
             <h1>Sauti Studio</h1>
             <Logout onClick={logout}>Log out</Logout>
             <BorderBox>
-                {isEditing ? <CardEditing id={props.match.params.id} push={props.history.push}/> : <CardInfo />}
+                {isEditing ? <CardEditing id={props.match.params.id} push={props.history.push} setEditing={setEditing}/> : <CardInfo />}
                 {isEditing ? null : <Button onClick={editItem}>Edit</Button>}
                 {props.flow.pages.map(item => (
                     <FlowPage key={item.id} page={item}/>
