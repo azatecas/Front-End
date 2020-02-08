@@ -5,10 +5,11 @@ import { connect } from 'react-redux';
 import { getFlows } from '../../actions';
 
 const BorderBox = styled.div`
-    border: 2px solid black;
-    width: 300px;
+    border: 1px solid gray;
+    width: 25%;
     margin: 1%;
     padding: 2%;
+    background-color: white;
 ` 
 
 const Title = styled.h2`
@@ -26,9 +27,9 @@ const FlowCard = (props) => {
 
     return (
         <div>
-        {props.flows.map(item => (
+        {props.flows.map((item,index) => (
             <BorderBox key={item.id}>
-                <Link to={`/flow/${item.id}`} style={{textDecoration: 'none', color: 'black'}}><Title>{item.name}</Title></Link>
+                <Link to={`/flow/${item.id}`} style={{textDecoration: 'none', color: 'black'}}><Title><span>{index + 1}) </span>{item.name}</Title></Link>
                 <h3>{item.category}</h3>
             </BorderBox>
         ))}

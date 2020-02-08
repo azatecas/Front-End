@@ -4,12 +4,17 @@ import { connect } from 'react-redux';
 import { addFlow } from '../../actions';
 
 const Button = styled.button`
-    border: 2px solid black;
+    border: 1px solid #1B73C1;
     padding: 1.5%;
-    margin-left: 3%;
-    background-color: white;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    background-color: #1B73C1;
+    font-size: 40px;
+    color:white;
+    text-decoration: strong;
     &:hover {
-        background-color: black;
+        background-color: #0C5698 ;
         color: white;
     }
 `
@@ -36,30 +41,36 @@ const FlowForm = (props) => {
 
 
     return (
-        <form onSubmit={ submitForm } style={{border: "2px solid black", width: '800px', padding: '2%'}}>
-            <label htmlFor='name'>Name: </label>
-            <input
-                id="name"
-                type="text"
-                name="name"
-                onChange={handleChanges}
-                placeholder="Name"
-                value={item.name}
-                style={{marginRight: '1%'}}
-                required
-            />
-            <label htmlFor='category'>Category: </label>
-            <input
-                id="category"
-                type="text"
-                name="category"
-                value={item.category}
-                onChange={handleChanges}
-                placeholder="Category"
-            />
-
-            <Button type="submit">Add Flow</Button>
-        </form>
+        <div className="form-container">
+            <form onSubmit={ submitForm } className="flow-form">
+                <div className="inputs">
+                    <label htmlFor='name'>Name: </label>
+                        <input
+                            id="name"
+                            type="text"
+                            name="name"
+                            onChange={handleChanges}
+                            placeholder="Tomatoes"
+                            value={item.name}
+                            // style={{marginRight: '1%'}}
+                            required
+                        />
+                    <label htmlFor='category'>Category: </label>
+                        <input
+                            id="category"
+                            type="text"
+                            name="category"
+                            value={item.category}
+                            onChange={handleChanges}
+                            placeholder="Food"
+                        />
+                </div>
+                <div className="submit-btn">
+                    <Button type="submit">+</Button>
+                </div>
+                
+            </form>
+        </div>
     )
 }
 

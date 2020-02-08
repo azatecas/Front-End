@@ -2,23 +2,27 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import "../App.css";
 import styled from 'styled-components';
+import NavBar from './flowComponents/NavBar';
 //importing form validation components
 import FormValidation from './formValidation/FormValidation';
 import ValidateAuth from './formValidation/ValidateAuth';
 
 const Button = styled.button`
-    border: 2px solid black;
+    border: 1px solid #1B73C1;
+    font-size: 24px;
     padding: 2%;
-    background-color: black;
+    background-color: #1B73C1;
     color: white;
+    width: 50%;
+    height: 50px;
+    border-radius: 10px;
     &:hover {
-        background-color: white;
-        color: black;
+        background-color: #0C5698 ;
     }
     @media (max-width: 500px) {
     width: 100%;
   }
-`
+` //end of Button 
 const SignIn = props => {
     const myProps = props;    
     const INITIAL_STATE = {
@@ -29,7 +33,8 @@ const SignIn = props => {
 
     return (
         <>
-            <h1 style={{padding: '1%'}}>Sauti Studio</h1>
+            
+            <NavBar />
             <div className="styled-div">
                 <form className="styled-form" onSubmit={ handleSubmit }>
                     <label htmlFor="username">Username:</label>
@@ -55,10 +60,13 @@ const SignIn = props => {
                         onBlur={ handleBlur }
                         />
                         {errors.password && <p className="error-input">{errors.password}</p>}
-
-                    <Button disabled={isSubmitting} type="submit">Login</Button>
-                    <p>Or make an account here: <Link to='./sign-up'>Sign Up</Link></p>
-                    <a href="https://fervent-bassi-308b70.netlify.com/">Return to Marketing Page</a> 
+                    <div className="button-container">
+                        <Button disabled={isSubmitting} type="submit">Login</Button>
+                    </div>
+                    <div className='bottom-form'>
+                        <p>Or make an account here: <Link to='./sign-up'>Sign Up</Link></p>
+                        <a href="https://fervent-bassi-308b70.netlify.com/">Return to Marketing Page</a>
+                    </div>
                 </form>
             </div>
         </>

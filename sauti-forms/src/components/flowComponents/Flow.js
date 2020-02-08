@@ -103,8 +103,7 @@ const Flow = props => {
         props.getFlow(props.match.params.id)
     },[props.pageUpdating])
     return(
-        <Box>
-            <h1>Sauti Studio</h1>
+        <Box>            
             <Logout onClick={logout}>Log out</Logout>
             <BorderBox>
                 {isEditing ? <CardEditing id={props.match.params.id} push={props.history.push} setEditing={setEditing}/> : <CardInfo />}

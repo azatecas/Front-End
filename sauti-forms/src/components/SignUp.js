@@ -2,19 +2,23 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import "../App.css";
 import styled from 'styled-components';
+import NavBar from './flowComponents/NavBar';
 
 //importing form validation components
 import SignUpValidation from './formValidation/SignUpValidation';
 import SignUpAuth from './formValidation/SignUpAuth';
 
 const Button = styled.button`
-    border: 2px solid black;
+    border: 1px solid #1B73C1;
+    font-size: 24px;
     padding: 2%;
-    background-color: black;
+    background-color: #1B73C1;
     color: white;
+    width: 50%;
+    height: 50px;
+    border-radius: 10px;
     &:hover {
-        background-color: white;
-        color: black;
+        background-color: #0C5698 ;
     }
     @media (max-width: 500px) {
     width: 100%;
@@ -33,7 +37,8 @@ const SignUp = props => {
 
     return (
         <>
-            <h1 style={{padding: '1%'}}>Sauti Studio</h1>
+            <NavBar /> 
+            
             <div className="styled-div">
                 <form className="styled-form" onSubmit={ handleSubmit }>
                     <label htmlFor="username">Username:</label>
@@ -71,11 +76,17 @@ const SignUp = props => {
                         onBlur={ handleBlur }
                         />
                         {errors.password && <p className="error-input">{errors.password}</p>}
+                        
+                    <div className="button-container">
+                        <Button disable={isSubmitting} type="submit">Register</Button>
+                    </div>
 
-                    <Button disable={isSubmitting} type="submit">Register</Button>
+                    <div className='bottom-form'>
+                        <p>Already have an account? <Link to='/sign-in'>Sign In</Link> </p>         
+                        <a href="https://fervent-bassi-308b70.netlify.com/">Return to Marketing Page</a>
+                    </div>                    
                     
-                    <p>Already have an account? <Link to='/sign-in'>Sign In</Link> </p>         
-                    <a href="https://fervent-bassi-308b70.netlify.com/">Return to Marketing Page</a>                       
+                                          
                 </form>
             </div>
         </>
