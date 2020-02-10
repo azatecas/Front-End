@@ -2,6 +2,7 @@ import React from 'react';
 import FlowForm from './FlowForm';
 import FlowCard from './FlowCard';
 import styled from 'styled-components';
+import NavBar from './NavBar';
 
 const Button = styled.button`
     border: 2px solid black;
@@ -28,7 +29,7 @@ const Dashboard = props => {
     return (
         <div>
             <Box>
-                <h1>Sauti Studio</h1>
+                <NavBar />
                 <Button onClick={logout} style={{marginBottom: '1.5%'}}>Log out</Button>
                 <FlowForm />
                 <FlowCard />
